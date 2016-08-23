@@ -1,12 +1,14 @@
-const app = require('app');
-const BrowserWindow = require('browser-window');
-let win;
+'use strict';
 
-require('crash-reporter').start();
+const electron = require('electron');
+const app = electron.app;
+const BrowserWindow = electron.BrowserWindow;
+
+let win;
 
 let createWndow = () => {
   win = new BrowserWindow({ width: 1360, height: 800 });
-  win.loadUrl('file://' + __dirname + '/public/index.html');
+  win.loadURL('file://' + __dirname + '/public/index.html');
   win.openDevTools();
   win.on('closed', () => {
     win = null;
