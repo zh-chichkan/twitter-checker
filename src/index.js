@@ -1,14 +1,8 @@
 require('./less/index.less');
-
 'use strict';
-
-let a = 10;
-console.log(a);
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './containers/App';
 
-ReactDOM.render(
-  <div className="myDiv">Hello Electron!</div>,
-  document.getElementById('content')
-);
+ReactDOM.render(<App />, document.getElementById('content'));

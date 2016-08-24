@@ -17,25 +17,27 @@ module.exports = {
     publicPath: 'http://localhost:3000/built/'
   },
   module: {
-   loaders: [
-     {
-       test: /\.js$/,
-       loader: 'babel-loader',
-       exclude: /node_modules/,
-       include: path.join(__dirname, 'src'),
-       query: {
-         presets: ["es2015", "react"]
-       }
-     }, {
-       test: /\.css$/,
-       loader: 'style-loader!css-loader'
-     }, {
-       test: /\.less$/,
-       loader: 'style-loader!css-loader!less-loader'
-     }
-   ]
+    preLoaders: [{ test: /\.json$/, loader: 'json-loader'}],
+    loaders: [{
+      test: /\.js$/,
+      loader: 'babel-loader',
+      exclude: /node_modules/,
+      include: path.join(__dirname, 'src'),
+      query: {
+        presets: ['es2015', 'react']
+      }
+    }, {
+      test: /\.css$/,
+      loader: 'style-loader!css-loader'
+    }, {
+      test: /\.less$/,
+      loader: 'style-loader!css-loader!less-loader'
+    }],
   },
-   plugins: [
-     new webpack.HotModuleReplacementPlugin()
-   ]
-}
+  plugins: [new webpack.HotModuleReplacementPlugin()],
+  node: {
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
+  }
+};
