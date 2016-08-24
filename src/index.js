@@ -1,5 +1,6 @@
-require('./less/index.less');
 'use strict';
+
+require('./less/index.less');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
