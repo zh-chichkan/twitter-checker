@@ -1,4 +1,9 @@
+import 'babel-polyfill';
+import 'request';
+
 import React, { Component, PropTypes } from 'react';
+import { ipcRenderer } from 'electron';
+import { isEqual } from 'lodash';
 
 import { TIMER } from '../constants/AppSonstants.js';
 import getTweets from '../utils/TwitterReader.js';
@@ -45,7 +50,13 @@ export default class App extends Component {
 
   _getTwetts () {
     getTweets(this.state.term).then(
-      (res) => this.setState({ tweets: res.statuses })
+      (res) => {
+        if (!isEqual(this.state.tweets, res.statuses)) {
+          ipcRenderer.sendSync('notify-tray');
+        }
+
+        this.setState({ tweets: res.statuses });
+      }
     );
   }
 }

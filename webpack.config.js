@@ -17,7 +17,7 @@ module.exports = {
     publicPath: 'http://localhost:3000/built/'
   },
   module: {
-    preLoaders: [{ test: /\.json$/, loader: 'json-loader'}],
+    //preLoaders: [{ test: /\.json$/, loader: 'json-loader'}],
     loaders: [{
       test: /\.js$/,
       loader: 'babel-loader',
@@ -32,12 +32,15 @@ module.exports = {
     }, {
       test: /\.less$/,
       loader: 'style-loader!css-loader!less-loader'
-    }],
+    }, {
+      test: /\.json$/, loader: 'json-loader'
+    }]
   },
   plugins: [new webpack.HotModuleReplacementPlugin()],
   node: {
     fs: 'empty',
     net: 'empty',
     tls: 'empty'
-  }
+  },
+  target: 'electron'
 };
