@@ -17,7 +17,6 @@ module.exports = {
     publicPath: 'http://localhost:3000/built/'
   },
   module: {
-    //preLoaders: [{ test: /\.json$/, loader: 'json-loader'}],
     loaders: [{
       test: /\.js$/,
       loader: 'babel-loader',
